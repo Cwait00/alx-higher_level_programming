@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <python.h>
+#include <Python.h>
 
 /**
- * print_python_bytes - Prints information about bytes objects
+ * print_python_bytes - Prints information about python byte objects
  * @p: Python Object
  * Return: no return
  */
