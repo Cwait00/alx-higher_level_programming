@@ -1,15 +1,15 @@
 #!/bin/bash
 # This Bash script sends a JSON POST request to a URL and displays the body of the response
 
-# Check if the number of arguments is correct
+# Check if the correct number of arguments is provided
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <URL> <JSON file>"
     exit 1
 fi
 
-# Check if the provided JSON file is valid
-if ! jq . "$2" > /dev/null 2>&1; then
-    echo "Not a valid JSON"
+# Check if the provided JSON file exists
+if [ ! -f "$2" ]; then
+    echo "File not found: $2"
     exit 1
 fi
 
