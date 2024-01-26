@@ -11,9 +11,15 @@ import sys
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    response = requests.get(url)
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raises HTTPError for bad responses (4xx and 5xx)
 
-    print(response.text)
+        print(response.text)
 
-    if response.status_code >= 400:
-        print(f"Error code: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+
+        if hasattr(e, 'response') and e.response is not None:
+            print(f"HTTP status code: {e.response.status_code}")
