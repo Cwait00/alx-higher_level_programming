@@ -7,8 +7,13 @@ if __name__ == "__main__":
 
     payload = {'email': email}
 
-    # No need to modify the URL if your Flask app is running on port 5000
-    response = requests.post(url + '/post_email', data=payload)
+    try:
+        response = requests.post(url + '/post_email', data=payload)
+        response.raise_for_status()  # Check if the request was successful
 
-    print("Your email is:", email)
-    print(response.text)
+        print("Your email is:", email)
+        print(response.text)
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        sys.exit(1)
