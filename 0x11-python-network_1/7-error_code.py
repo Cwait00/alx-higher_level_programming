@@ -2,8 +2,6 @@
 """
 Python script that takes in a URL, sends a request to the URL,
 and displays the body of the response.
-If the HTTP status code is greater than or equal to 400,
-prints: Error code: followed by the value of the HTTP status code
 """
 
 import requests
@@ -11,15 +9,18 @@ import sys
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    
+
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Raises HTTPError for bad responses (4xx and 5xx)
-
+        response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
         print(response.text)
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
+    except requests.exceptions.HTTPError as e:
+        print(f"Error code: {e.response.status_code}")
 
-        if hasattr(e, 'response') and e.response is not None:
-            print(f"HTTP status code: {e.response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
+
+# Pycodestyle validation
+# W293: Remove whitespace at the end of a line
+# E501: Limit all lines to a maximum of 79 characters
