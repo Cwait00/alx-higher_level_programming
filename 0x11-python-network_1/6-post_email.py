@@ -15,4 +15,8 @@ if __name__ == "__main__":
     payload = {'email': email}
     response = requests.post(url, data=payload)
 
-    print(f"Your email is: {response.text}")
+    # Check if the response contains the expected output
+    if "Your email is:" in response.text:
+        print(response.text.split("Your email is: ")[1].strip())
+    else:
+        print("Unexpected response format.")
