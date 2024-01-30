@@ -7,11 +7,13 @@ and displays the value of the X-Request-Id variable found in the header of the r
 import urllib.request
 import sys
 
+
 def fetch_x_request_id(url):
     with urllib.request.urlopen(url) as response:
         # Get the value of the X-Request-Id header from the response
         x_request_id = response.getheader('X-Request-Id')
         return x_request_id
+
 
 if __name__ == "__main__":
     # Check if the correct number of arguments is provided
