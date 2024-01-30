@@ -17,6 +17,6 @@ if __name__ == "__main__":
 
     # Check if the response contains the expected output
     if "Your email is:" in response.text:
-        print(response.text.split("Your email is: ")[1].strip())
+        print(response.text.strip())
     else:
         print("Unexpected response format.")
