@@ -28,7 +28,8 @@ function requestAndStore(url, filePath) {
                 process.exit(1); // Exit with a non-zero status code to indicate failure
             }
             
-            console.log(`Contents of ${url} successfully saved to ${filePath}`);
+            // Uncomment the line below if you want to print a success message
+            // console.log(`Contents of ${url} successfully saved to ${filePath}`);
         });
     });
 }
@@ -45,3 +46,15 @@ const filePath = process.argv[3];
 
 // Call the function to fetch webpage content and store it in a file
 requestAndStore(url, filePath);
+
+// Check if the last argument is 'cat'
+if (filePath === 'cat') {
+    // Read the content of the file and print it to the console
+    fs.readFile(url, 'utf-8', function(err, data) {
+        if (err) {
+            console.error(`Error reading file ${url}:`, err);
+            process.exit(1); // Exit with a non-zero status code to indicate failure
+        }
+        console.log(data);
+    });
+}
