@@ -16,6 +16,10 @@ axios.get(url)
     console.log(`code: ${response.status}`);
   })
   .catch(error => {
-    console.error(error);
+    if (error.response) {
+      console.log(`code: ${error.response.status}`);
+    } else {
+      console.error(error);
+    }
     process.exit(1);
   });
