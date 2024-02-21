@@ -7,15 +7,15 @@ const movieId = process.argv[2];
 const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
 // Function to fetch characters from the API and print them
-function fetchAndPrintCharacters(movieId) {
+function fetchAndPrintCharacters(apiUrl) {
     request(apiUrl, function (error, response, body) {
         if (error) {
             console.error('Error:', error);
         } else {
             const film = JSON.parse(body);
             console.log(`Characters from ${film.title}:`);
-            film.characters.forEach(character => {
-                request(character, function (error, response, body) {
+            film.characters.forEach(characterUrl => {
+                request(characterUrl, function (error, response, body) {
                     if (error) {
                         console.error('Error:', error);
                     } else {
@@ -29,4 +29,4 @@ function fetchAndPrintCharacters(movieId) {
 }
 
 // Call the function to fetch and print characters
-fetchAndPrintCharacters(movieId);
+fetchAndPrintCharacters(apiUrl);
