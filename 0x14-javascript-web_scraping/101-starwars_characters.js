@@ -14,6 +14,7 @@ function fetchAndPrintCharacters(apiUrl) {
         } else {
             const film = JSON.parse(body);
             console.log(`Characters from ${film.title}:`);
+            let count = 0;
             film.characters.forEach(characterUrl => {
                 request(characterUrl, function (error, response, body) {
                     if (error) {
@@ -21,6 +22,11 @@ function fetchAndPrintCharacters(apiUrl) {
                     } else {
                         const characterData = JSON.parse(body);
                         console.log(characterData.name);
+                        count++;
+                        if (count === film.characters.length) {
+                            // All characters fetched, exit the program
+                            process.exit();
+                        }
                     }
                 });
             });
