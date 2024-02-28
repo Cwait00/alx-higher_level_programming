@@ -1,0 +1,39 @@
+// Import the fs module from Node.js to work with the file system
+const fs = require('node:fs');
+
+// Define an array containing numbers representing task IDs
+const numbers = [...Array(10).keys(), 100, 101, 102, 103];
+
+// Initialize an empty string to store the HTML list items
+let list = '<ul>';
+
+// Iterate over each task number
+for (const number of numbers) {
+    // Create a list item with a hyperlink to the corresponding task HTML file
+    list += `<li><a href="${number}-main.html" target="_blank">Task ${number}</a></li>`;
+}
+
+// Close the unordered list tag
+list += '</ul>';
+
+// Generate the HTML content for the index page
+const indexHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holberton School</title>
+</head>
+<body>
+    <header>All tasks</header>
+    ${list} <!-- Insert the list of tasks here -->
+</body>
+</html>
+`;
+
+// Write the generated HTML content to the index.html file
+fs.writeFileSync('index.html', indexHTML);
+
+// Log a message to indicate that the index.html file has been successfully generated
+console.log('index.html file generated successfully.');
