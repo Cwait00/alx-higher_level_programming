@@ -5,7 +5,8 @@ $(document).ready(function() {
         // Extract the character name from the response data
         var characterName = data.name;
 
-        // Select the DIV#character element using the jQuery API and update its content with the character name
+        // Select the DIV#character element using the jQuery API and
+	    // update its content with the character name
         $('#character').text(characterName);
     });
 });
