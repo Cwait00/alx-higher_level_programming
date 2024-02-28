@@ -8,13 +8,7 @@ $(document).ready(function() {
         // Select the <header> element using the jQuery API
         var headerElement = $('header');
 
-        // Check if the header has the class 'red'
-        if (headerElement.hasClass('red')) {
-            // Toggle class: remove 'red', add 'green'
-            headerElement.removeClass('red').addClass('green');
-        } else {
-            // Toggle class: remove 'green', add 'red'
-            headerElement.removeClass('green').addClass('red');
-        }
+        // Toggle the class of the <header> element between 'red' and 'green'
+        headerElement.toggleClass('red green');
     });
 });
